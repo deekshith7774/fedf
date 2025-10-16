@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Anime Bookstore</title>
+<style>
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background: linear-gradient(135deg, #fceff9, #e3f2fd, #fff8e7);
+  margin: 0;
+  padding: 20px;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* Header */
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #222;
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+h1::before {
+  content: "✨📚✨";
+  font-size: 1.6rem;
+}
+
+/* Book List Grid */
+.book-list {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.book {
+  background: linear-gradient(145deg, #ffffff, #f0f4ff);
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.book strong {
+  font-size: 1.15rem;
+  color: #4a47a3;
+}
+
+.book small {
+  display: block;
+  margin: 4px 0;
+  color: #666;
+}
+
+.book span {
+
+  font-weight: bold;
+  color: #27ae60;
+  display: block;
+  margin: 6px 0;
+}
+
+/* Out of Stock text */
+.out-stock {
+  color: #ff4d4d;
+  font-weight: 600;
+  background: linear-gradient(90deg, #ffcccc, #ffe6e6);
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* Buttons */
+button {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease; 
+}
+
+button.add {
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  color: white;
+  box-shadow: 0 3px 6px rgba(0, 114, 255, 0.3);
+}
+
+button.add:hover {
+  background: linear-gradient(90deg, #0072ff, #004aad);
+}
+
+button.remove {
+  background: linear-gradient(90deg, #ff6a6a, #d63031);
+  color: white;
+  box-shadow: 0 3px 6px rgba(255, 106, 106, 0.3);
+}
+
+button.remove:hover {
+  background: linear-gradient(90deg, #d63031, #b71c1c);
+}
+
+/* Cart Section */
+.cart {
+  max-width: 650px;
+  margin: 50px auto;
+  background: linear-gradient(145deg, #ffffff, #f9f9ff);
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.cart h2 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart h2::before {
+  content: "🛒";
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f8f9fa, #eef1f9);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.cart-item span {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.cart-total {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 20px;
+  text-align: right;
+  color: #2c3e50;
+}
+
+/* Checkout Button */
+.checkout-btn {
+  display: block;
+  margin: 25px 0 0 auto;
+  background: linear-gradient(90deg, #00b09b, #96c93d);
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,176,155,0.3);
+  transition: all 0.3s ease;
+}
+
+.checkout-btn:hover {
+  background: linear-gradient(90deg, #009688, #5eaf2f);
+}
+</style>
+</head>
+<body>
+<h1>Anime Bookstore</h1>
+
+<div class="book-list" id="bookList"></div>
+
+<div class="cart">
+  <h2>Shopping Cart</h2>
+  <div id="cartItems"></div>
+  <div class="cart-total" id="cartTotal">Total: ₹0</div>
+  <button class="checkout-btn">Proceed to Checkout</button>
+</div>
+
+<script type="module">
+import { displayBooks } from './books.js';
+import { updateCartUI } from './ui.js';
+import { cart } from './cart.js';
+
+// Display books on page load
+displayBooks();
+updateCartUI(cart);
+
+// Checkout mock
+document.querySelector(".checkout-btn").addEventListener("click", () => {
+  alert("✅ Checkout complete! Thanks for buying anime manga.");
+});
+</script>
+</body>
+</html>
